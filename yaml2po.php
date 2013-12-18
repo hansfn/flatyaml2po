@@ -96,6 +96,7 @@ function yaml2po($yaml_file) {
         $with_quotes = false;
         if (strpos($line, '":') > 0) {
             list ($msgid, $msgstr) = explode('":', $line);
+            $msgid .= '"';
             $with_quotes = true;
         } else {
             list ($msgid, $msgstr) = explode(':', $line);
@@ -157,7 +158,7 @@ function po2yaml($po_file) {
         $i++;
     }
     $yaml_value = getyaml($po_text, 'msgstr');
-    $yaml_lines[] = "$yaml_key: yaml_value";
+    $yaml_lines[] = "$yaml_key: $yaml_value";
 
     return implode(LF, $yaml_lines);;
 }
